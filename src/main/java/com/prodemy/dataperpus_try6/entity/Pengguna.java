@@ -1,14 +1,15 @@
 package com.prodemy.dataperpus_try6.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_pengguna")
 public class Pengguna {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "kode_pengguna", length = 25)
+    @Column(name = "kode_pengguna", length = 25, unique = true)
     private String kodePengguna;
     @Column(name = "nama_depan")
     private String namaDepan;
@@ -16,10 +17,14 @@ public class Pengguna {
     private String namaBelakang;
     @Column(name = "peran_pengguna")
     private String peranPengguna;
+    @Column(name = "jenis_kelamin")
+    private String jenisKelamin;
     @Column(name = "alamat")
     private String alamat;
     @Column(name = "kontak", length = 14)
     private String kontak;
+    @Column(name = "tanggal_daftar")
+    private Date tanggalDaftar;
 
     public Long getId() {
         return id;
@@ -61,6 +66,14 @@ public class Pengguna {
         this.peranPengguna = peranPengguna;
     }
 
+    public String getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
+    }
+
     public String getAlamat() {
         return alamat;
     }
@@ -75,5 +88,13 @@ public class Pengguna {
 
     public void setKontak(String kontak) {
         this.kontak = kontak;
+    }
+
+    public Date getTanggalDaftar() {
+        return tanggalDaftar;
+    }
+
+    public void setTanggalDaftar(Date tanggalDaftar) {
+        this.tanggalDaftar = tanggalDaftar;
     }
 }

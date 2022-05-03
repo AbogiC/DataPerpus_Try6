@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @Repository
 public interface RepoPengguna extends JpaRepository<Pengguna, Long> {
-    @Query(value = "SELECT p FROM Pengguna p WHERE p.namaDepan = :nama_depan", nativeQuery = false)
+    @Query(value = "SELECT p FROM Pengguna p WHERE p.namaDepan = :nama_depan")
     Optional<Pengguna> findPenggunaByNamaDepan(@PathParam("nama_depan") String nama_depan);
-    @Query(value = "SELECT p FROM Pengguna p WHERE p.namaBelakang = :nama_belakang", nativeQuery = false)
+    @Query(value = "SELECT p FROM Pengguna p WHERE p.namaBelakang = :nama_belakang")
     Optional<Pengguna> findPenggunaByNamaBelakang(@PathParam("nama_belakang") String nama_belakang);
-    @Query(value = "SELECT p FROM Pengguna p WHERE CONCAT(p.namaDepan,p.namaBelakang) = :nama_lengkap", nativeQuery = false)
+    @Query(value = "SELECT p FROM Pengguna p WHERE CONCAT(p.namaDepan,p.namaBelakang) = :nama_lengkap")
     Optional<Pengguna> findPenggunaByNamaLengkap(@PathParam("nama_lengkap") String nama_lengkap);
     List<Pengguna> findAllByPeranPengguna(String peranPengguna);
 }
