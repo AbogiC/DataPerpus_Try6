@@ -36,19 +36,12 @@ public class ControlPengguna {
         }
         return respon;
     }
-    @GetMapping("/aksesperan/{peran}")
-    public List<DtoPengguna> getByPeran(@PathVariable String peran){
-        Optional<Pengguna> listPeran = repoPengguna.findByPeran(peran);
-        List<DtoPengguna> listDtoPeran = listPeran.stream().map(this::convertToDto1).collect(Collectors.toList());
+    @GetMapping("/aksesperan/{peranPengguna}")
+    public List<DtoPengguna> getByPeran(@PathVariable String peranPengguna){
+        List<Pengguna> listPengguna = repoPengguna.findAllByPeranPengguna(peranPengguna);
+        List<DtoPengguna> listDtoPeran = listPengguna.stream().map(this::convertToDto1).collect(Collectors.toList());
         return listDtoPeran;
     }
-//    @GetMapping("/prov/{codeProvince}")
-//    public List<KotaDto> getByProvince(@PathVariable String codeProvince) {
-//        List<Kota> kotaList = repository.findAllByProvinceKodeProvince(codeProvince);
-//        List<KotaDto> kotaDtoList = kotaList.stream().map(this::convertToDto)
-//                .collect(Collectors.toList());
-//        return kotaDtoList;
-//    }
     @PostMapping("/daftar")
     public DefaultResponse<DtoPengguna> insert(@RequestBody DtoPengguna dto){
         Pengguna entity = convertToEntity1(dto);
@@ -65,6 +58,20 @@ public class ControlPengguna {
         }
         return masukan;
     }
+    @PostMapping("/edit/{namaLengkap}")
+    public DefaultResponse<DtoPengguna> edit(@RequestBody DtoPengguna dto){
+        Pengguna entity = convertToEntity1(dto);
+        DefaultResponse<DtoPengguna> masukan = new DefaultResponse<>();
+
+        Optional<Pengguna> namaDepan = repoPengguna.findPenggunaByNamaDepan(dto.getFirstName());
+        Optional<Pengguna> namaBelakang = repoPengguna.findPenggunaByNamaBelakang(dto.getLastName());
+        if(namaDepan.isPresent() && namaBelakang.isPresent()){
+            repoPengguna.save(entity);
+            masukan.setMessage("Data diri berhasil diperbaharui");
+            masukan.setData(dto);
+        }
+        return masukan;
+    }
 
     private DtoPengguna convertToDto1(Pengguna entity){
         DtoPengguna dto = new DtoPengguna();
@@ -73,6 +80,7 @@ public class ControlPengguna {
         dto.setLastName(entity.getNamaBelakang());
         dto.setPeran(entity.getPeranPengguna());
         dto.setAlamat(entity.getAlamat());
+        dto.setKontak(entity.getKontak());
         return dto;
     }
     private Pengguna convertToEntity1(DtoPengguna dto){
@@ -82,6 +90,7 @@ public class ControlPengguna {
         entity.setNamaBelakang(dto.getLastName());
         entity.setPeranPengguna(dto.getPeran());
         entity.setAlamat(dto.getAlamat());
+        entity.setKontak(dto.getKontak());
         return entity;
     }
 }

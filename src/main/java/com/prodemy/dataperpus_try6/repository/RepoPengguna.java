@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,6 +17,5 @@ public interface RepoPengguna extends JpaRepository<Pengguna, Long> {
     Optional<Pengguna> findPenggunaByNamaBelakang(@PathParam("nama_belakang") String nama_belakang);
     @Query(value = "SELECT p FROM Pengguna p WHERE CONCAT(p.namaDepan,p.namaBelakang) = :nama_lengkap", nativeQuery = false)
     Optional<Pengguna> findPenggunaByNamaLengkap(@PathParam("nama_lengkap") String nama_lengkap);
-    @Query(value = "SELECT p FROM Pengguna p WHERE p.peranPengguna = :peran", nativeQuery = false)
-    Optional<Pengguna> findByPeran(@PathParam("peran") String peran);
+    List<Pengguna> findAllByPeranPengguna(String peranPengguna);
 }

@@ -1,20 +1,12 @@
 package com.prodemy.dataperpus_try6.dto;
 
 public class DtoPengguna {
-    private Integer id;
     private String kode;
     private String firstName;
     private String lastName;
     private String peran;
     private String alamat;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String kontak;
 
     public String getKode() {
         return kode;
@@ -54,5 +46,13 @@ public class DtoPengguna {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+
+    public String getKontak() {
+        return kontak;
+    }
+
+    public void setKontak(String kontak) {
+        this.kontak = kontak;
     }
 }

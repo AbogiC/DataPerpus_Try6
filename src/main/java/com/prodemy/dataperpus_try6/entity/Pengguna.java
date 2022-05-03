@@ -18,6 +18,8 @@ public class Pengguna {
     private String peranPengguna;
     @Column(name = "alamat")
     private String alamat;
+    @Column(name = "kontak", length = 14)
+    private String kontak;
 
     public Long getId() {
         return id;
@@ -65,5 +67,13 @@ public class Pengguna {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+
+    public String getKontak() {
+        return kontak;
+    }
+
+    public void setKontak(String kontak) {
+        this.kontak = kontak;
     }
 }
