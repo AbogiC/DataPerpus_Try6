@@ -1,14 +1,16 @@
 package com.prodemy.dataperpus_try6.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_pengguna")
-public class Pengguna {
+public class Pengguna{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Column(name = "kode_pengguna", length = 25, unique = true)
     private String kodePengguna;
     @Column(name = "nama_depan")
@@ -25,13 +27,12 @@ public class Pengguna {
     private String kontak;
     @Column(name = "tanggal_daftar")
     private Date tanggalDaftar;
+    @JsonIgnore
+    @OneToMany(mappedBy = "kodePengguna")
+    private Set<Akses> akses = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Set<Akses> getAkses() {
+        return akses;
     }
 
     public String getKodePengguna() {

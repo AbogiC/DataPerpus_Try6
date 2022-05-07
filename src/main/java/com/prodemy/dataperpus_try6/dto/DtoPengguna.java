@@ -3,7 +3,6 @@ package com.prodemy.dataperpus_try6.dto;
 import java.util.Date;
 
 public class DtoPengguna {
-    private Long id;
     private String kode;
     private String firstName;
     private String lastName;
@@ -12,14 +11,6 @@ public class DtoPengguna {
     private String alamat;
     private String kontak;
     private Date tanggalDaftar;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getKode() {
         return kode;

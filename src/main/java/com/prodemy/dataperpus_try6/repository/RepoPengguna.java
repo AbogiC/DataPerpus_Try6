@@ -17,5 +17,7 @@ public interface RepoPengguna extends JpaRepository<Pengguna, Long> {
     Optional<Pengguna> findPenggunaByNamaBelakang(@PathParam("nama_belakang") String nama_belakang);
     @Query(value = "SELECT p FROM Pengguna p WHERE CONCAT(p.namaDepan,p.namaBelakang) = :nama_lengkap")
     Optional<Pengguna> findPenggunaByNamaLengkap(@PathParam("nama_lengkap") String nama_lengkap);
+    @Query(value = "SELECT p FROM Pengguna p WHERE p.kodePengguna = :kode_pengguna")
+    Optional<Pengguna> findPenggunaByKode(@PathParam("kode_pengguna") String kode_pengguna);
     List<Pengguna> findAllByPeranPengguna(String peranPengguna);
 }
