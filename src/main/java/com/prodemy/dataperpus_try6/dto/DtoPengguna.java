@@ -1,5 +1,7 @@
 package com.prodemy.dataperpus_try6.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class DtoPengguna {
@@ -10,6 +12,7 @@ public class DtoPengguna {
     private String jenisKelamin;
     private String alamat;
     private String kontak;
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private Date tanggalDaftar;
 
     public String getKode() {

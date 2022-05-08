@@ -11,7 +11,7 @@ public class Akses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAkses;
-    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss",timezone = "Asia/Bangkok")
     @Column(name = "t_tanggal_akses")
     private Date tanggalAkses;
     @ManyToOne(cascade = CascadeType.ALL)

@@ -138,13 +138,14 @@ public class ControlPengguna {
         entity.setJenisKelamin(dto.getJenisKelamin());
         entity.setAlamat(dto.getAlamat());
         entity.setKontak(dto.getKontak());
-        entity.setTanggalDaftar(dto.getTanggalDaftar());
+        entity.setTanggalDaftar(new Date());
+//        entity.setTanggalDaftar(dto.getTanggalDaftar());
         return entity;
     }
-    private Akses convertToEntity2(DtoAkses dto){
-        Akses entity = new Akses();
-        entity.setIdAkses(dto.getId());
-        entity.setTanggalAkses(dto.getTanggalAkses());
-        return entity;
-    }
+//    private Akses convertToEntity2(DtoAkses dto){
+//        Akses entity = new Akses();
+//        entity.setIdAkses(dto.getId());
+//        entity.setTanggalAkses(dto.getTanggalAkses());
+//        return entity;
+//    }
 }

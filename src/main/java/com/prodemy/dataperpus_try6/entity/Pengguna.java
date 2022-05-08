@@ -1,5 +1,6 @@
 package com.prodemy.dataperpus_try6.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Pengguna{
     private String alamat;
     @Column(name = "kontak", length = 14)
     private String kontak;
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "tanggal_daftar")
     private Date tanggalDaftar;
     @JsonIgnore
