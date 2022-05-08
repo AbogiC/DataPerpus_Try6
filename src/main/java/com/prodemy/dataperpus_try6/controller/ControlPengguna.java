@@ -9,9 +9,9 @@ import com.prodemy.dataperpus_try6.entity.Pengguna;
 import com.prodemy.dataperpus_try6.repository.RepoAkses;
 import com.prodemy.dataperpus_try6.repository.RepoEbook;
 import com.prodemy.dataperpus_try6.repository.RepoPengguna;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,17 +19,19 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/pengguna")
 public class ControlPengguna {
-//    private final RepoPengguna repoPengguna;
-//
-//    public ControlPengguna(RepoPengguna repoPengguna) {
-//        this.repoPengguna = repoPengguna;
-//    }
-    @Autowired
+    final
     RepoEbook repoEbook;
-    @Autowired
+    final
     RepoPengguna repoPengguna;
-    @Autowired
+    final
     RepoAkses repoAkses;
+
+    public ControlPengguna(RepoEbook repoEbook, RepoPengguna repoPengguna, RepoAkses repoAkses) {
+        this.repoEbook = repoEbook;
+        this.repoPengguna = repoPengguna;
+        this.repoAkses = repoAkses;
+    }
+
     @GetMapping
     public List<DtoPengguna> getPengguna(){
         List<Pengguna> listPengguna = repoPengguna.findAll();
@@ -85,14 +87,20 @@ public class ControlPengguna {
         return masukan;
     }
     @PostMapping("/akses_ebook")
-    public DefaultResponse<DtoAkses> edit(@RequestBody DtoAkses dto){
-        Akses akses = convertToEntity2(dto);
-        DefaultResponse<DtoAkses> masukan = new DefaultResponse<>();
+    public Akses saveDateAccess(@RequestBody Akses akses){
+        akses.setTanggalAkses(new Date());
         repoAkses.save(akses);
-        masukan.setMessage("Tanggal akses telah masuk");
-        masukan.setData(dto);
-        return masukan;
+        return akses;
     }
+//    @PostMapping("/akses_ebook")
+//    public DefaultResponse<DtoAkses> edit(@RequestBody DtoAkses dto){
+//        Akses akses = convertToEntity2(dto);
+//        DefaultResponse<DtoAkses> masukan = new DefaultResponse<>();
+//        repoAkses.save(akses);
+//        masukan.setMessage("Tanggal akses telah masuk");
+//        masukan.setData(dto);
+//        return masukan;
+//    }
     @GetMapping("/dataakses")
     List<Akses> getDataAkses(){ return repoAkses.findAll(); }
     @PutMapping("/{id}/kodepengguna/{kodePengguna}/ebook/{idEbook}")

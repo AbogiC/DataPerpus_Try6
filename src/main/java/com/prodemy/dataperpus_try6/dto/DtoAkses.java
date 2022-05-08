@@ -1,8 +1,5 @@
 package com.prodemy.dataperpus_try6.dto;
 
-import com.prodemy.dataperpus_try6.entity.Ebook;
-import com.prodemy.dataperpus_try6.entity.Pengguna;
-
 import java.util.Date;
 
 public class DtoAkses {
@@ -21,10 +18,6 @@ public class DtoAkses {
 
     public Date getTanggalAkses() {
         return tanggalAkses;
-    }
-
-    public void setTanggalAkses(Date tanggalAkses) {
-        this.tanggalAkses = tanggalAkses;
     }
 
     public String getKodePengguna() {

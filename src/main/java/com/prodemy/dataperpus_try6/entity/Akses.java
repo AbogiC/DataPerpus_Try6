@@ -1,5 +1,7 @@
 package com.prodemy.dataperpus_try6.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ public class Akses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAkses;
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "t_tanggal_akses")
     private Date tanggalAkses;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -36,10 +39,6 @@ public class Akses {
 
     public void setIdAkses(Long idAkses) {
         this.idAkses = idAkses;
-    }
-
-    public Date getTanggalAkses() {
-        return tanggalAkses;
     }
 
     public void setTanggalAkses(Date tanggalAkses) {
